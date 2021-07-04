@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import WithLoading from "./WithLoading";
+import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles({
   table: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
     margin: "10px",
   },
   container: {
-    overflowX: "scroll",
+    overflowX: "auto",
   },
 });
 
@@ -65,6 +66,7 @@ function BasicTable({ data }) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Pagination count={10} color="primary" />
     </>
   );
 }
