@@ -6,6 +6,7 @@ import { Input, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { RootRef } from "@material-ui/core";
+import WithLoading from "./WithLoading";
 const useStyles = makeStyles({
   main: {
     width: "100%",
@@ -18,39 +19,17 @@ const useStyles = makeStyles({
     padding: "20px",
     margin: "10px 15px",
   },
+  input: {
+    color: "white",
+  },
 });
 const UserDetailes = ({ data }) => {
-  const { id } = useParams();
-  const [user, setUser] = useState([]);
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     const userFromServer = await fetchTasks();
-  //     setUser(userFromServer);
-  //     console.log(user);
-  //   };
-
-  //   getUser();
-  // }, []);
-
-  // const fetchTasks = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://60c3832c2df2cb00178ab568.mockapi.io/users/${id}`
-  //     );
-  //     const user = await response.json();
-  //     return user;
-  //   } catch (err) {
-  //     toast.error("request failed!");
-  //   } finally {
-  //     toast.success("it is done!!");
-  //   }
-  // };
-
   const classes = useStyles();
   const ref = useRef();
   useEffect(() => {
     ref.current.click();
   }, []);
+  console.log(data);
   return (
     <>
       <ToastContainer />
@@ -62,32 +41,32 @@ const UserDetailes = ({ data }) => {
             </Box>
             <Box component="div">
               <Input
+                className={classes.input}
                 placeholder="Name"
                 defaultValue={data.name}
                 fullWidth={true}
               />
               <RootRef rootRef={ref}>
                 <Input
+                  className={classes.input}
                   placeholder="Company"
                   defaultValue={data.company}
                   fullWidth={true}
                 />
               </RootRef>
               <Input
+                className={classes.input}
                 placeholder="phone"
                 defaultValue={data.phone}
                 fullWidth={true}
               />
               <Input
+                className={classes.input}
                 placeholder="Email"
-                defaultValue={data.email}
+                defaultValue={data.mail}
                 fullWidth={true}
               />
             </Box>
-            {/* <Box component="div">Name :{user.name}</Box>
-            <Box component="div">Company :{user.company}</Box>
-            <Box component="div">Phone :{user.phone}</Box>
-            <Box component="div">Email :{user.mail}</Box> */}
           </Box>
         </Typography>
       </Container>
@@ -97,5 +76,5 @@ const UserDetailes = ({ data }) => {
 
 export default WithLoading(
   UserDetailes,
-  "https://60c3832c2df2cb00178ab568.mockapi.io/users/"
+  "https://60c3832c2df2cb00178ab568.mockapi.io"
 );

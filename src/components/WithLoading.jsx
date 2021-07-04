@@ -7,12 +7,13 @@ import { useHistory } from "react-router-dom";
 const WithLoading = (WrappedComponent, api) => {
   const WithLoadingComponent = (props) => {
     const [data, setData] = useState([]);
-    const history = useHistory();
+    const [loading, setLoadnig] = useState(true);
+    let history = useHistory();
     useEffect(() => {
       const getData = async () => {
         const dataFromServer = await fetchData();
         setData(dataFromServer);
-        console.log(data);
+        setLoadnig(false);
       };
       getData();
     }, []);
@@ -21,14 +22,15 @@ const WithLoading = (WrappedComponent, api) => {
         const response = await fetch(api + history.location.pathname);
         const data = await response.json();
         toast.success("Data Fetched");
+        return data;
       } catch (error) {
         toast.error("error happend");
       }
     };
-    if (data) {
-      return <WrappedComponent data={data} {...props} />;
-    } else {
+    if (loading) {
       return <LoadingShape />;
+    } else {
+      return <WrappedComponent data={data} {...props} />;
     }
   };
   return WithLoadingComponent;

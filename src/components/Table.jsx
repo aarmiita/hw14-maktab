@@ -32,7 +32,6 @@ function BasicTable({ data }) {
   const classes = useStyles();
 
   let history = useHistory();
-
   return (
     <>
       <ToastContainer />
@@ -48,7 +47,7 @@ function BasicTable({ data }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((user) => (
+            {data?.map((user) => (
               <TableRow key={user.id}>
                 <TableCell component="th" scope="row">
                   <Button onClick={() => history.push(`/users/${user.id}`)}>
